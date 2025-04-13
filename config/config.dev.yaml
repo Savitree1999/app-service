@@ -1,0 +1,10 @@
+App:
+  Env: dev
+  Port: "8080"
+
+DB:
+  Host: localhost
+  Port: "3306"
+  User: root
+  Password: password
+  Name: mydb_dev

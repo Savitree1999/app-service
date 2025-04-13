@@ -1,0 +1,10 @@
+App:
+  Env: uat
+  Port: "8081"
+
+DB:
+  Host: uat-db.example.com
+  Port: "3306"
+  User: uat_user
+  Password: uat_pass
+  Name: mydb_uat

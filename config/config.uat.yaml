@@ -3,8 +3,8 @@ App:
   Port: "8081"
 
 DB:
-  Host: uat-db.example.com
+  Host: localhost
   Port: "3306"
-  User: uat_user
-  Password: uat_pass
-  Name: mydb_uat
+  User: root
+  Password: 1234
+  Name: app_service

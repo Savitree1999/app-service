@@ -27,17 +27,16 @@ func LoadConfig() (*Config, error) {
 		env = "dev"
 	}
 
-	configFile := fmt.Sprintf("config/config.%s.yaml", env)
-
-	viper.SetConfigName(configFile)
+	viper.AddConfigPath("config") // มองหาใน ./config
+	viper.SetConfigName(fmt.Sprintf("config.%s", env)) // เช่น config.dev
 	viper.SetConfigType("yaml")
 
-	// Set default values
+	// Default
 	viper.SetDefault("App.Env", env)
 	viper.SetDefault("App.Port", "8080")
 
 	if err := viper.ReadInConfig(); err != nil {
-		return nil, fmt.Errorf("error loading config file %s: %w", configFile, err)
+		return nil, fmt.Errorf("error loading config file %s: %w", viper.ConfigFileUsed(), err)
 	}
 
 	var config Config

@@ -7,6 +7,7 @@ import (
 	"github.com/Savitree1999/app-service/internal/db"
 	"github.com/Savitree1999/app-service/internal/logger"
 	"github.com/Savitree1999/app-service/internal/router"
+	"github.com/Savitree1999/app-service/internal/model"
 )
 
 func main() {
@@ -25,7 +26,11 @@ func main() {
 	if err != nil {
 		sugar.Fatalf("Failed to connect database: %v", err)
 	}
-	defer database.Close()
+
+	// Migrate models
+	if err := database.AutoMigrate(&model.User{}); err != nil {
+		sugar.Fatalf("Failed to migrate database: %v", err)
+	}
 
 	// Init Gin
 	r := router.SetupRouter(cfg, sugar, database)
